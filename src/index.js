@@ -1,11 +1,12 @@
 //###########################################################################
-// 20220505 - Uwe Seefeld-Herkommer
+// 20220508 - Uwe Seefeld-Herkommer
 // In src/index.js 
 //###########################################################################
 
 const express = require("express");
 const v1Router = require("./v1/routes"); // Test
 const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
+const bodyParser = require("body-parser");
 
 const app = express(); 
 const PORT = process.env.PORT || 3000; 
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 //###########################################################################
 
 app.use("/api/v1", v1Router); // Test
+app.use(bodyParser.json());
 app.use("/api/v1/workouts", v1WorkoutRouter);
 
 app.listen(PORT, () => { 

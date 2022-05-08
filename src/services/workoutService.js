@@ -3,42 +3,38 @@
 // In src/services/workoutService.js
 //###########################################################################
 
+const { v4: uuid } = require("uuid");
 const Workout = require("../database/Workout");
 
-//###########################################################################
-
 const getAllWorkouts = () => {
-  // *** ADD ***
   const allWorkouts = Workout.getAllWorkouts();
-  // *** ADD ***
   return allWorkouts;
 };
 
-//###########################################################################
-
-const getOneWorkout = () => {
-  return;
+const getOneWorkout = (workoutId) => {
+  const workout = Workout.getOneWorkout(workoutId);
+  return workout;
 };
 
-//###########################################################################
-
-const createNewWorkout = () => {
-  return;
+const createNewWorkout = (newWorkout) => {
+  const workoutToInsert = {    
+    id: uuid(),
+    createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+    updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+    ...newWorkout // ????
+  };
+  const createdWorkout = Workout.createNewWorkout(workoutToInsert);
+  return createdWorkout;
 };
 
-//###########################################################################
-
-const updateOneWorkout = () => {
-  return;
+const updateOneWorkout = (workoutId, changes) => {
+  const updatedWorkout = Workout.updateOneWorkout(workoutId, changes);
+  return updatedWorkout;
 };
 
-//###########################################################################
-
-const deleteOneWorkout = () => {
-  return;
+const deleteOneWorkout = (workoutId) => {
+  Workout.deleteOneWorkout(workoutId);
 };
-
-//###########################################################################
 
 module.exports = {
   getAllWorkouts,

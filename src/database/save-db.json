@@ -63,28 +63,6 @@
         "The first three rounds might feel terrible, but stick to it",
         "RX Weights: 205lb/145lb"
       ]
-    },
-    {
-      "id": "f3ae3b3b-cd37-48f3-9753-d48f87e9546f",
-      "createdAt": "5/8/2022, 12:52:08 AM",
-      "updatedAt": "5/8/2022, 12:52:08 AM",
-      "name": "Uwe Core Buster",
-      "mode": "AMRAP 20",
-      "equipment": [
-        "rack",
-        "barbell",
-        "abmat"
-      ],
-      "exercises": [
-        "15 toes to bars",
-        "10 thrusters",
-        "30 abmat sit-ups"
-      ],
-      "trainerTips": [
-        "Split your toes to bars into two sets maximum",
-        "Go unbroken on the thrusters",
-        "Take the abmat sit-ups as a chance to normalize your breath"
-      ]
     }
   ]
 }

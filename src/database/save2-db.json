@@ -65,26 +65,28 @@
       ]
     },
     {
-      "id": "f3ae3b3b-cd37-48f3-9753-d48f87e9546f",
-      "createdAt": "5/8/2022, 12:52:08 AM",
-      "updatedAt": "5/8/2022, 12:52:08 AM",
-      "name": "Uwe Core Buster",
-      "mode": "AMRAP 20",
-      "equipment": [
-        "rack",
-        "barbell",
-        "abmat"
-      ],
-      "exercises": [
-        "15 toes to bars",
-        "10 thrusters",
-        "30 abmat sit-ups"
-      ],
-      "trainerTips": [
-        "Split your toes to bars into two sets maximum",
-        "Go unbroken on the thrusters",
-        "Take the abmat sit-ups as a chance to normalize your breath"
-      ]
+      "newWorkout": {
+        "name": "Core Buster",
+        "mode": "AMRAP 20",
+        "equipment": [
+          "rack",
+          "barbell",
+          "abmat"
+        ],
+        "exercises": [
+          "15 toes to bars",
+          "10 thrusters",
+          "30 abmat sit-ups"
+        ],
+        "trainerTips": [
+          "Split your toes to bars into two sets maximum",
+          "Go unbroken on the thrusters",
+          "Take the abmat sit-ups as a chance to normalize your breath"
+        ]
+      },
+      "id": "70b03353-039e-46a2-a9b0-db49cc27f833",
+      "createdAt": "5/7/2022, 10:00:58 PM",
+      "updatedAt": "5/7/2022, 10:00:59 PM"
     }
   ]
 }
