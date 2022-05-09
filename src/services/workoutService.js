@@ -8,9 +8,11 @@ const Workout = require("../database/Workout");
 
 //###########################################################################
 
-const getAllWorkouts = () => {
+const getAllWorkouts = (filterParams) => {
   try {
-    const allWorkouts = Workout.getAllWorkouts();
+    // Filtering workout
+    // const allWorkouts = Workout.getAllWorkouts();
+    const allWorkouts = Workout.getAllWorkouts(filterParams);
     return allWorkouts;
   } catch (error) {
     throw error;

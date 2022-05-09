@@ -8,8 +8,58 @@ const workoutService = require("../services/workoutService");
 //###########################################################################
 
 const getAllWorkouts = (req, res) => {
+  //####################################
+  // Filtering workout
+  //####################################
+  const { mode } = req.query;
+  const { equipment } = req.query;
+  const { length } = req.query;
+  const { page } = req.query;
+  const { sort } = req.query;
+  let filter = "";
+  
+  var regex1 = /a/,
+    regex2 = /b/,
+    regex3 = /c/,
+    samplestring = 'b';
+
+switch (true) {
+    case regex1.test(samplestring):
+        console.log("regex1");
+        break;
+    case regex2.test(samplestring):
+        console.log("regex2");
+        break;
+    case regex3.test(samplestring):
+        console.log("regex3");
+        break;
+}
+  
+  switch(/req.query/) {
+  case "mode":
+    filter = { mode };
+    break;
+  case { equipment }:
+    filter = { equipment };
+    break;
+  case { length }:
+    filter = { length };
+    break;
+  case { page }:
+    filter = { page };
+    break;
+  case { sort }:
+    filter = { sort };
+    break;
+  default:
+    // code block
+  } 
+  
   try {
-    const allWorkouts = workoutService.getAllWorkouts();
+    // const allWorkouts = workoutService.getAllWorkouts();
+    const allWorkouts = workoutService.getAllWorkouts({ mode });
+    //const allWorkouts = workoutService.getAllWorkouts(filter);
+    
     res.send({ status: "OK", data: allWorkouts });
   } catch (error) {
     res
