@@ -12,6 +12,8 @@ const getAllWorkouts = (filterParams) => {
   try {
     // Filtering workout
     // const allWorkouts = Workout.getAllWorkouts();
+    //console.log("workoutService ");
+    //console.log(filterParams);
     const allWorkouts = Workout.getAllWorkouts(filterParams);
     return allWorkouts;
   } catch (error) {

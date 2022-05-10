@@ -9,16 +9,53 @@ const { saveToDatabase } = require("./utils");
 
 //###########################################################################
 
+let doppelt1 = function (num) {
+   return num * 2;
+}
+
+let doppelt2 = (num) => { return num * 2 }
+
+let doppelt3 = num => num * 2;
+
+//###########################################################################
+
 const getAllWorkouts = (filterParams) => {
   try {
-    // return DB.workouts;
+    //console.log(filterParams);
+    //console.log(filterParams.equipment);
+    
     let workouts = DB.workouts;
+        
+    // Other if-statements will go here for different parameters start
     if (filterParams.mode) {
       return DB.workouts.filter((workout) =>
         workout.mode.toLowerCase().includes(filterParams.mode)
       );
     }
-    // Other if-statements will go here for different parameters
+    if (filterParams.equipment) {
+      //DB.workouts.equipment.forEach(function(item, index, array) {
+      //  console.log(item, index);
+      //});      
+      return DB.workouts.filter((workout) =>                                
+        workout.equipment.toString().toLowerCase().includes(filterParams.equipment)
+      );
+    }
+    if (filterParams.length) {
+      return DB.workouts.filter((workout) =>
+        workout.length.toLowerCase().includes(filterParams.length)
+      );
+    }
+    if (filterParams.page) {
+      return DB.workouts.filter((workout) =>
+        workout.page.toLowerCase().includes(filterParams.page)
+      );
+    }
+    if (filterParams.sort) {
+      return DB.workouts.filter((workout) =>
+        workout.sort.toLowerCase().includes(filterParams.sort)
+      );
+    }
+    // Other if-statements will go here for different parameters end
     return workouts;
   } catch (error) {
     throw { status: 500, message: error };

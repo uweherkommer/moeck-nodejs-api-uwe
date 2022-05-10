@@ -8,17 +8,9 @@ const workoutService = require("../services/workoutService");
 //###########################################################################
 
 const getAllWorkouts = (req, res) => {
-//###########################################################################
-// Filtering workout
-// Receive all workouts that require a barbell: /api/v1/workouts?equipment=barbell
-// Get only 5 workouts: /api/v1/workouts?length=5
-// When using pagination, receive the second page: /api/v1/workouts?page=2
-// Sort the workouts in the response in descending order by their
-// creation date: /api/v1/workouts?sort=-createdAt
-//
-// You can also combine the parameters, to get the last 10 updated workouts
-// for example: /api/v1/workouts?sort=-updatedAt&length=10
-//###########################################################################
+  //####################################
+  // Filtering workout
+  //####################################
   const { mode } = req.query;
   const { equipment } = req.query;
   const { length } = req.query;
@@ -26,35 +18,62 @@ const getAllWorkouts = (req, res) => {
   const { sort } = req.query;
   let filter = "";
   
-  switch (false) {
-    case typeof mode === 'undefined':
-        console.log("_regex1");
-        filter = { mode };
+  console.log(mode);
+  console.log(equipment);
+  
+  switch (true) {
+    case regex1.test(req.query):
+        console.log("regex1");
         break;
-    case typeof equipment === 'undefined':
-        console.log("_regex2");
-        filter = { equipment };
+    case regex2.test(req.query):
+        console.log("regex2");
         break;
-    case typeof page === 'undefined':
-        console.log("_regex3");
-        filter = { page };
-        break;
-    case typeof length === 'undefined':
-        console.log("_regex4");
-        filter = { length };
-        break;
-    case typeof sort === 'undefined':
-        console.log("_regex5");
-        filter = { sort };
+    case regex3.test(req.query):
+        console.log("regex3");
         break;
   }
   
-  //###########################################################################
+  var regex1 = /a/,
+    regex2 = /b/,
+    regex3 = /c/,
+    samplestring = 'b';  
+
+  switch (true) {
+    case regex1.test(samplestring):
+        console.log("regex1");
+        break;
+    case regex2.test(samplestring):
+        console.log("regex2");
+        break;
+    case regex3.test(samplestring):
+        console.log("regex3");
+        break;
+  }
+  
+  switch(/req.query/) {
+  case "mode":
+    filter = { mode };
+    break;
+  case { equipment }:
+    filter = { equipment };
+    break;
+  case { length }:
+    filter = { length };
+    break;
+  case { page }:
+    filter = { page };
+    break;
+  case { sort }:
+    filter = { sort };
+    break;
+  default:
+    // code block
+  } 
   
   try {
     // const allWorkouts = workoutService.getAllWorkouts();
-    //const allWorkouts = workoutService.getAllWorkouts({ mode });
-    const allWorkouts = workoutService.getAllWorkouts(filter);
+    const allWorkouts = workoutService.getAllWorkouts({ mode });
+    //const allWorkouts = workoutService.getAllWorkouts(filter);
     
     res.send({ status: "OK", data: allWorkouts });
   } catch (error) {
