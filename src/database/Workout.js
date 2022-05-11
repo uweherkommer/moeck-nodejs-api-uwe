@@ -3,25 +3,31 @@
 // In src/database/Workout.js
 //###########################################################################
 // In src/database/Workout.js
+//###########################################################################
+// !!! filtering, sorting & pagination !!!
+// controllers/workoutController.js -> services/workoutService.js -> database/Workout.js
+// !!!
+//###########################################################################
 
 const DB = require("./db.json");
 const { saveToDatabase } = require("./utils");
+const sortJson = require('sort-json');
 
 //###########################################################################
 
 let doppelt1 = function (num) {
    return num * 2;
 }
-
+//----Y
 let doppelt2 = (num) => { return num * 2 }
-
+//----Y
 let doppelt3 = num => num * 2;
 
 //###########################################################################
 
 const getAllWorkouts = (filterParams) => {
   try {
-    //console.log(filterParams);
+    console.log(filterParams);
     //console.log(filterParams.equipment);
     
     let workouts = DB.workouts;
@@ -50,7 +56,11 @@ const getAllWorkouts = (filterParams) => {
         workout.page.toLowerCase().includes(filterParams.page)
       );
     }
-    if (filterParams.sort) {
+    if (filterParams.sort) {      
+      console.log(filterParams.sort + workouts[0].name);
+      
+      return DB.workouts;
+      //----
       return DB.workouts.filter((workout) =>
         workout.sort.toLowerCase().includes(filterParams.sort)
       );
