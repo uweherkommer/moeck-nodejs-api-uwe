@@ -44,7 +44,7 @@ const getAllWorkouts = (req, res) => {
         filter = { length };
         break;
     case typeof sort === 'undefined':
-        console.log("_regex5");
+        //console.log("_regex5");
         filter = { sort };
         break;
   }

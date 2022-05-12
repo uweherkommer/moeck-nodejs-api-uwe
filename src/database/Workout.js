@@ -12,6 +12,8 @@
 const DB = require("./db.json");
 const { saveToDatabase } = require("./utils");
 const sortJson = require('sort-json');
+const JSONu = require('json');
+const options = { ignoreCase: true, reverse: true, depth: 1};
 
 //###########################################################################
 
@@ -38,10 +40,7 @@ const getAllWorkouts = (filterParams) => {
         workout.mode.toLowerCase().includes(filterParams.mode)
       );
     }
-    if (filterParams.equipment) {
-      //DB.workouts.equipment.forEach(function(item, index, array) {
-      //  console.log(item, index);
-      //});      
+    if (filterParams.equipment) {        
       return DB.workouts.filter((workout) =>                                
         workout.equipment.toString().toLowerCase().includes(filterParams.equipment)
       );
@@ -58,11 +57,24 @@ const getAllWorkouts = (filterParams) => {
     }
     if (filterParams.sort) {      
       console.log(filterParams.sort + workouts[0].name);
+      console.log(filterParams.sort + workouts[6].name);
+      console.log(workouts.length);
       
-      return DB.workouts;
-      //----
-      return DB.workouts.filter((workout) =>
-        workout.sort.toLowerCase().includes(filterParams.sort)
+      let sortArr = [];
+      for(var exKey in DB.workouts) {
+        console.log("key:"+exKey+", value:"+ DB.workouts[exKey].name.toLowerCase());
+        sortArr[exKey] = JSON.stringify(DB.workouts[exKey]);
+      }
+      console.log(sortArr);
+      console.log(sortArr[3]);
+      
+      var obj = JSON.parse(sortArr[0]);
+      console.log(obj.name);
+      
+      return obj;
+      //----      
+      return DB.workouts.filter((workout) =>                                
+        workout.sort.toString().toLowerCase().includes(filterParams.sort)
       );
     }
     // Other if-statements will go here for different parameters end
@@ -163,6 +175,30 @@ const deleteOneWorkout = (workoutId) => {
   }
 };
 
+//###########################################################################
+//const bodyString = JSON.stringify(sortObject(DB.workouts));
+//###########################################################################
+function sortObject(unordered, sortArrays = false) {
+    if (!unordered || typeof unordered !== 'object') {
+        return unordered;
+    }
+
+    if (Array.isArray(unordered)) {
+        const newArr = unordered.map((item) => sortObject(item, sortArrays));
+        if (sortArrays) {
+        newArr.sort();
+        }
+        return newArr;
+    }
+
+    const ordered = {};
+    Object.keys(unordered)
+        .sort()
+        .forEach((key) => {
+        ordered[key] = sortObject(unordered[key], sortArrays);
+        });
+    return ordered;
+}
 //###########################################################################
 
 module.exports = {
