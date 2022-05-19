@@ -7,6 +7,14 @@
 // !!! filtering, sorting & pagination !!!
 // controllers/workoutController.js -> services/workoutService.js -> database/Workout.js
 // !!!
+// localhost:3000/api/v1/workouts?mode=amrap
+// localhost:3000/api/v1/workouts?mode=for%20time
+// localhost:3000/api/v1/workouts??equipment=barbell
+// localhost:3000/api/v1/workouts?length=5
+// localhost:3000/api/v1/workouts?page=2
+// localhost:3000/api/v1/workouts?sort=name
+// localhost:3000/api/v1/workouts?sort=-updatedAt&length=10
+// !!! Stand 20220520 - Use data caching for performance improvements
 //###########################################################################
 
 const DB = require("./db.json");
@@ -29,7 +37,7 @@ let doppelt3 = num => num * 2;
 
 const getAllWorkouts = (filterParams) => {
   try {
-    console.log(filterParams);
+    //console.log(filterParams);
     //console.log(filterParams.equipment);
     
     let workouts = DB.workouts;
@@ -55,34 +63,47 @@ const getAllWorkouts = (filterParams) => {
         workout.page.toLowerCase().includes(filterParams.page)
       );
     }
-    if (filterParams.sort) {      
-      console.log(filterParams.sort + workouts[0].name);
-      console.log(filterParams.sort + workouts[6].name);
-      console.log(workouts.length);
-      
+//###########################################################################
+    if (filterParams.sort) {       
+      //#####################################################################
+      //console.log(filterParams.sort + workouts[0].name);
+      //console.log(filterParams.sort + workouts[6].name);
+      //console.log(workouts.length);
+      // for stringify json - javascript array
+      //####################################################################
       let sortArr = [];
-      for(var exKey in DB.workouts) {
-        console.log("key:"+exKey+", value:"+ DB.workouts[exKey].name.toLowerCase());
+      for (var exKey in DB.workouts) {
+        //console.log("key:"+exKey+", value:"+ DB.workouts[exKey].name.toLowerCase());
         sortArr[exKey] = JSON.stringify(DB.workouts[exKey]);
-      }
-      console.log(sortArr);
-      console.log(sortArr[3]);
+      }      
+      //####################################################################
       
-      var obj = JSON.parse(sortArr[0]);
-      console.log(obj.name);
+      workouts.sort(GetSortOrder("name"));      
       
-      return obj;
-      //----      
       return DB.workouts.filter((workout) =>                                
-        workout.sort.toString().toLowerCase().includes(filterParams.sort)
+        workouts.sort(GetSortOrder("name"))
       );
     }
+//###########################################################################
     // Other if-statements will go here for different parameters end
     return workouts;
   } catch (error) {
     throw { status: 500, message: error };
   }
 };
+//###########################################################################
+// sorting
+//###########################################################################
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }
+}
 
 //###########################################################################
 
