@@ -2,11 +2,22 @@
 // 20220510 - Uwe Seefeld-Herkommer
 // In src/v1/routes/workoutRoutes.js
 //###########################################################################
+// 20220520 - caching with apicache, or redis
+//###########################################################################
 
 const express = require("express");
 const router = express.Router(); // Test
 const workoutController = require("../../controllers/workoutController");
 const recordController = require("../../controllers/recordController");
+
+//const apicache = require("apicache");
+//const cache = apicache.middleware;
+
+//###########################################################################
+// 20220520 - Custom made middlewares / future comming
+//###########################################################################
+// const authenticate = require("../../middlewares/authenticate");
+// const authorize = require("../../middlewares/authorize");
 
 //###########################################################################
 
@@ -15,6 +26,7 @@ const recordController = require("../../controllers/recordController");
 //});
 
 router.get("/", workoutController.getAllWorkouts);
+//router.get("/", cache("2 minutes"), workoutController.getAllWorkouts);
 
 //###########################################################################
 
@@ -37,6 +49,8 @@ router.get("/:workoutId/records", recordController.getRecordForWorkout);
 //});
 
 router.post("/", workoutController.createNewWorkout);
+// future comming
+// router.post("/", authenticate, authorize, workoutController.createNewWorkout);
 
 //###########################################################################
 
