@@ -8,12 +8,16 @@
 // controllers/workoutController.js -> services/workoutService.js -> database/Workout.js
 // !!!
 // localhost:3000/api/v1/workouts?mode=amrap
+// localhost:3000/api/v1/workouts?sort=name
 // localhost:3000/api/v1/workouts?mode=for%20time
-// localhost:3000/api/v1/workouts??equipment=barbell
+// localhost:3000/api/v1/workouts?equipment=barbell
+//
+// localhost:3000/api/v1/workouts/a24d2618-01d1-4682-9288-8de1343e53c7
+//
 // localhost:3000/api/v1/workouts?length=5
 // localhost:3000/api/v1/workouts?page=2
-// localhost:3000/api/v1/workouts?sort=name
 // localhost:3000/api/v1/workouts?sort=-updatedAt&length=10
+//
 // !!! Stand 20220520 - Use data caching for performance improvements
 //###########################################################################
 
@@ -33,6 +37,7 @@ let doppelt2 = (num) => { return num * 2 }
 //----Y
 let doppelt3 = num => num * 2;
 
+//###########################################################################
 //###########################################################################
 
 const getAllWorkouts = (filterParams) => {
@@ -63,7 +68,7 @@ const getAllWorkouts = (filterParams) => {
         workout.page.toLowerCase().includes(filterParams.page)
       );
     }
-//###########################################################################
+    //#######################################################################
     if (filterParams.sort) {       
       //#####################################################################
       //console.log(filterParams.sort + workouts[0].name);
@@ -84,16 +89,18 @@ const getAllWorkouts = (filterParams) => {
         workouts.sort(GetSortOrder("name"))
       );
     }
-//###########################################################################
     // Other if-statements will go here for different parameters end
     return workouts;
-  } catch (error) {
-    throw { status: 500, message: error };
+  }
+  catch (error) {
+      throw { status: 500, message: error };
   }
 };
+
 //###########################################################################
 // sorting
 //###########################################################################
+
 function GetSortOrder(prop) {    
     return function(a, b) {    
         if (a[prop] > b[prop]) {    
@@ -105,6 +112,7 @@ function GetSortOrder(prop) {
     }
 }
 
+//###########################################################################
 //###########################################################################
 
 const getOneWorkout = (workoutId) => {
@@ -122,6 +130,7 @@ const getOneWorkout = (workoutId) => {
   }
 };
 
+//###########################################################################
 //###########################################################################
 
 const createNewWorkout = (newWorkout) => {
@@ -142,6 +151,7 @@ const createNewWorkout = (newWorkout) => {
   }
 };
 
+//###########################################################################
 //###########################################################################
 
 const updateOneWorkout = (workoutId, changes) => {
@@ -177,6 +187,7 @@ const updateOneWorkout = (workoutId, changes) => {
 };
 
 //###########################################################################
+//###########################################################################
 
 const deleteOneWorkout = (workoutId) => {
   try {
@@ -195,6 +206,9 @@ const deleteOneWorkout = (workoutId) => {
     throw { status: error?.status || 500, message: error?.message || error };
   }
 };
+
+//###########################################################################
+//###########################################################################
 
 //###########################################################################
 //const bodyString = JSON.stringify(sortObject(DB.workouts));
@@ -220,6 +234,8 @@ function sortObject(unordered, sortArrays = false) {
         });
     return ordered;
 }
+
+//###########################################################################
 //###########################################################################
 
 module.exports = {
