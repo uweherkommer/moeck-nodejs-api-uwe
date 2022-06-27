@@ -1,6 +1,6 @@
 //###########################################################################
 // 20220510 - Uwe Seefeld-Herkommer
-// In src/v1/routes/workoutRoutes.js
+// In src/v1/routes/memberRoutes.js
 //###########################################################################
 // 20220520 - caching with apicache, or redis
 //###########################################################################
@@ -23,20 +23,12 @@ const memberController = require("../../controllers/memberController");
 
 //###########################################################################
 
-//router.get("/", (req, res) => {
-//  res.send("Get all workouts");
-//});
-
-router.get("/", workoutController.getAllWorkouts);
-//router.get("/", cache("2 minutes"), workoutController.getAllWorkouts);
+router.get("/", memberController.getAllMembers);
+//router.get("/", cache("2 minutes"), memberController.getAllWorkouts);
 
 //###########################################################################
 
-//router.get("/:workoutId", (req, res) => {
-//  res.send("Get an existing workout");
-//});
-
-router.get("/:workoutId", workoutController.getOneWorkout);
+router.get("/:memberId", memberController.getOneMember);
 
 //###########################################################################
 // War im Kurs vergessen worden ??? try... VVV
@@ -44,34 +36,19 @@ router.get("/:workoutId", workoutController.getOneWorkout);
 // out of the query parameter
 //###########################################################################
 
-router.get("/:workoutId/records", recordController.getRecordForWorkout);
-router.get("/:workoutId/members", memberController.getMemberForWorkout);
+router.get("/:memberId/records", memberController.getRecordForMember);
 
 //###########################################################################
 
-//router.post("/", (req, res) => {
-//  res.send("Create a new workout");
-//});
-
-router.post("/", workoutController.createNewWorkout);
-// future comming
-// router.post("/", authenticate, authorize, workoutController.createNewWorkout);
+router.post("/", memberController.createNewMember);
 
 //###########################################################################
 
-//router.patch("/:workoutId", (req, res) => {
-//  res.send("Update an existing workout");
-//});
-
-router.patch("/:workoutId", workoutController.updateOneWorkout);
+router.patch("/:memberId", memberController.updateOneMember);
 
 //###########################################################################
 
-//router.delete("/:workoutId", (req, res) => {
-//  res.send("Delete an existing workout");
-//});
-
-router.delete("/:workoutId", workoutController.deleteOneWorkout);
+router.delete("/:memberId", memberController.deleteOneMember);
 
 //###########################################################################
 

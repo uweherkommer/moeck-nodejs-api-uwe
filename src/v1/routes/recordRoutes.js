@@ -23,20 +23,12 @@ const memberController = require("../../controllers/memberController");
 
 //###########################################################################
 
-//router.get("/", (req, res) => {
-//  res.send("Get all workouts");
-//});
-
-router.get("/", workoutController.getAllWorkouts);
-//router.get("/", cache("2 minutes"), workoutController.getAllWorkouts);
+router.get("/", recordController.getAllRecords);
+//router.get("/", cache("2 minutes"), recordController.getAllWorkouts);
 
 //###########################################################################
 
-//router.get("/:workoutId", (req, res) => {
-//  res.send("Get an existing workout");
-//});
-
-router.get("/:workoutId", workoutController.getOneWorkout);
+router.get("/:recordId", recordController.getOneRecord);
 
 //###########################################################################
 // War im Kurs vergessen worden ??? try... VVV
@@ -44,34 +36,21 @@ router.get("/:workoutId", workoutController.getOneWorkout);
 // out of the query parameter
 //###########################################################################
 
-router.get("/:workoutId/records", recordController.getRecordForWorkout);
-router.get("/:workoutId/members", memberController.getMemberForWorkout);
+router.get("/:recordId/members", recordController.getRecordForMember);
 
 //###########################################################################
 
-//router.post("/", (req, res) => {
-//  res.send("Create a new workout");
-//});
-
-router.post("/", workoutController.createNewWorkout);
+router.post("/", recordController.createNewRecord);
 // future comming
 // router.post("/", authenticate, authorize, workoutController.createNewWorkout);
 
 //###########################################################################
 
-//router.patch("/:workoutId", (req, res) => {
-//  res.send("Update an existing workout");
-//});
-
-router.patch("/:workoutId", workoutController.updateOneWorkout);
+router.patch("/:recordId", recordController.updateOneRecord);
 
 //###########################################################################
 
-//router.delete("/:workoutId", (req, res) => {
-//  res.send("Delete an existing workout");
-//});
-
-router.delete("/:workoutId", workoutController.deleteOneWorkout);
+router.delete("/:recordId", recordController.deleteOneRecord);
 
 //###########################################################################
 

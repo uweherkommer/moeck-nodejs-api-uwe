@@ -68,7 +68,13 @@
 const express = require("express");
 const v1Router = require("./v1/routes"); // Test
 
+//##########################################################################
+// routes for workouts, members, records
+//##########################################################################
+
 const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
+const v1MemberRouter = require("./v1/routes/memberRoutes");
+const v1RecordRouter = require("./v1/routes/recordRoutes");
 
 const bodyParser = require("body-parser");
 
@@ -98,12 +104,12 @@ app.use("/api/v1/workouts", v1WorkoutRouter);
 //###########################################################################
 // For members
 //###########################################################################
-//app.use("/api/v1/members", v1MemberRouter);
+app.use("/api/v1/members", v1MemberRouter);
 
 //###########################################################################
 // For records
 //###########################################################################
-//app.use("/api/v1/records", v1RecordRouter);
+app.use("/api/v1/records", v1RecordRouter);
 
 //###########################################################################
 
