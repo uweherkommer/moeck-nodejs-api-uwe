@@ -1,6 +1,9 @@
 //###########################################################################
 // 20220505 - Uwe Seefeld-Herkommer
-// // In src/database/Record.js
+// In src/database/Record.js
+// 
+// We filter all the records that are related to the workout id
+// out of the query parameter
 //###########################################################################
 
 const DB = require("./db.json");

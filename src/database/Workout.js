@@ -4,15 +4,24 @@
 //###########################################################################
 // In src/database/Workout.js
 //###########################################################################
-// !!! filtering, sorting & pagination !!!
+// Endpoints and filtering, sorting & pagination
+//
 // controllers/workoutController.js -> services/workoutService.js -> database/Workout.js
-// !!!
+// 
+// localhost:3000/api/v1/workouts
+// querystring
 // localhost:3000/api/v1/workouts?mode=amrap
 // localhost:3000/api/v1/workouts?sort=name
 // localhost:3000/api/v1/workouts?mode=for%20time
 // localhost:3000/api/v1/workouts?equipment=barbell
+// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50
+// logical nesting - three levels deep at a maximum
+// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50/records
 //
-// localhost:3000/api/v1/workouts/a24d2618-01d1-4682-9288-8de1343e53c7
+// localhost:3000/api/v1/members
+// localhost:3000/api/v1/members/:memberId
+// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50/members
+//
 //
 // localhost:3000/api/v1/workouts?length=5
 // localhost:3000/api/v1/workouts?page=2

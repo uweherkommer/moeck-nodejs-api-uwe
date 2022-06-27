@@ -67,7 +67,9 @@
 
 const express = require("express");
 const v1Router = require("./v1/routes"); // Test
+
 const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
+
 const bodyParser = require("body-parser");
 
 const apicache = require("apicache");
@@ -87,7 +89,23 @@ const PORT = process.env.PORT || 3000;
 app.use("/api/v1", v1Router); // Test
 app.use(bodyParser.json());
 app.use(cache("2 minutes"));
+
+//###########################################################################
+// For workouts
+//###########################################################################
 app.use("/api/v1/workouts", v1WorkoutRouter);
+
+//###########################################################################
+// For members
+//###########################################################################
+//app.use("/api/v1/members", v1MemberRouter);
+
+//###########################################################################
+// For records
+//###########################################################################
+//app.use("/api/v1/records", v1RecordRouter);
+
+//###########################################################################
 
 app.listen(PORT, () => { 
     console.log(`API is listening on port ${PORT}`); 

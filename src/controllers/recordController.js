@@ -1,13 +1,15 @@
 //###########################################################################
 // 20220505 - Uwe Seefeld-Herkommer
-// In src/controllers/workoutController.js
-// ??? war im Kurs vergessen worden ??? try...
+// In src/controllers/recordController.js
+// War im Kurs vergessen worden ??? try...
+// 
+// We filter all the records that are related to the workout id
+// out of the query parameter
 //###########################################################################
 
 const recordService = require("../services/recordService");
 
 //###########################################################################
-
 //const getRecordForWorkout = (workoutId) => {
 //  try {
 //    const record = recordService.getRecordForWorkout(workoutId);
@@ -16,6 +18,7 @@ const recordService = require("../services/recordService");
 //    throw error;
 //  }
 //};
+//###########################################################################
 
 const getRecordForWorkout = (req, res) => {
   const {

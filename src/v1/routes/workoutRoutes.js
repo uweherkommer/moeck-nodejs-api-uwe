@@ -37,7 +37,9 @@ router.get("/", workoutController.getAllWorkouts);
 router.get("/:workoutId", workoutController.getOneWorkout);
 
 //###########################################################################
-// ??? war im Kurs vergessen worden ??? try... VVV
+// War im Kurs vergessen worden ??? try... VVV
+// We filter all the records that are related to the workout id
+// out of the query parameter
 //###########################################################################
 
 router.get("/:workoutId/records", recordController.getRecordForWorkout);
