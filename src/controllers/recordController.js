@@ -60,7 +60,6 @@ const getRecordForMember = (req, res) => {
 //##########################################################################
 
 const getAllRecords = (req, res) => {
-
   const { mode } = req.query;
   const { equipment } = req.query;
   const { length } = req.query;

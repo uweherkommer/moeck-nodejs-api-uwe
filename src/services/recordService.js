@@ -10,6 +10,21 @@ const Record = require("../database/Record");
 
 //###########################################################################
 
+const getAllRecords = (filterParams) => {
+  try {
+    // Filtering member
+    // const allMembers = Member.getAllMembers();
+    //console.log("memberService ");
+    //console.log(filterParams);
+    const allRecords = Record.getAllRecords(filterParams);
+    return allRecords;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//###########################################################################
+
 const getRecordForWorkout = (workoutId) => {
   try {
     const record = Record.getRecordForWorkout(workoutId);
@@ -21,4 +36,7 @@ const getRecordForWorkout = (workoutId) => {
 
 //###########################################################################
 
-module.exports = { getRecordForWorkout };
+module.exports = {
+  getRecordForWorkout,
+  getAllRecords
+};

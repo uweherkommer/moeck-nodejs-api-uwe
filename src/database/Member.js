@@ -6,7 +6,7 @@
 //
 // controllers/memberController.js -> services/memberService.js -> database/Member.js
 // 
-// localhost:3000/api/v1/workouts
+// localhost:3000/api/v1/members
 // querystring
 //###########################################################################
 
@@ -94,14 +94,14 @@ function GetSortOrder(prop) {
 
 const getOneMember = (memberId) => {
   try {
-    const workout = DB.members.find((workout) => workout.id === workoutId);
-    if (!workout) {
+    const member = DB.members.find((member) => member.id === memberId);
+    if (!member) {
       throw {
         status: 400,
-        message: `Can't find workout with the id '${workoutId}'`,
+        message: `Can't find workout with the id '${memberId}'`,
       };
     }
-    return workout;
+    return member;
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }
