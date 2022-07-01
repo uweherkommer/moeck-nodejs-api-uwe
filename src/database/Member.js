@@ -113,16 +113,18 @@ const getOneMember = (memberId) => {
 const createNewMember = (newMember) => {
   try {
     const isAlreadyAdded =
-      DB.members.findIndex((workout) => workout.name === newWorkout.name) > -1;
+      DB.members.findIndex((member) => member.name === newMember.name) > -1;
     if (isAlreadyAdded) {
       throw {
         status: 400,
-        message: `Workout with the name '${newWorkout.name}' already exists`,
+        message: `Member with the name '${newMember.name}' already exists`,
       };
     }
-    DB.members.push(newWorkout);
+    DB.members.push(newMember);
+    //##########################
     saveToDatabase(DB);
-    return newWorkout;
+    //##########################
+    return newMember;
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }

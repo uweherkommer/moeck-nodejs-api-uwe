@@ -9,18 +9,23 @@
 // controllers/workoutController.js -> services/workoutService.js -> database/Workout.js
 // 
 // localhost:3000/api/v1/workouts
+// localhost:3000/api/v1/workouts/:workoutId
+// localhost:3000/api/v1/members
+// localhost:3000/api/v1/members/:memberId
+// localhost:3000/api/v1/records
+// localhost:3000/api/v1/records/:recordId
+//
 // querystring
+//
 // localhost:3000/api/v1/workouts?mode=amrap
 // localhost:3000/api/v1/workouts?sort=name
 // localhost:3000/api/v1/workouts?mode=for%20time
 // localhost:3000/api/v1/workouts?equipment=barbell
-// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50
-// logical nesting - three levels deep at a maximum
-// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50/records
 //
-// localhost:3000/api/v1/members
-// localhost:3000/api/v1/members/:memberId
-// localhost:3000/api/v1/workouts/4a3d9aaa-608c-49a7-a004-66305ad4ab50/members
+// logical nesting - three levels deep at a maximum
+//
+// localhost:3000/api/v1/workouts/:workoutId/records
+// localhost:3000/api/v1/workouts/:workoutId/members
 //
 //
 // localhost:3000/api/v1/workouts?length=5

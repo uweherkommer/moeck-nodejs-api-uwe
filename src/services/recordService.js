@@ -36,7 +36,37 @@ const getRecordForWorkout = (workoutId) => {
 
 //###########################################################################
 
+const getOneRecord = (recordId) => {
+  try {
+    const record = Record.getOneRecord(recordId);
+    return record;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//###########################################################################
+
+const createNewRecord = (newRecord) => {
+  const recordToInsert = {
+    ...newRecord,
+    id: uuid(),
+    createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+    updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),    
+  };
+  try {
+    const createdRecord = Record.createNewRecord(recordToInsert);
+    return createdRecord;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//###########################################################################
+
 module.exports = {
   getRecordForWorkout,
-  getAllRecords
+  getAllRecords,
+  getOneRecord,
+  createNewRecord
 };

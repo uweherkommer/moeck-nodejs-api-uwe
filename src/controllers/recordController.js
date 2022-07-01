@@ -151,7 +151,7 @@ const createNewRecord = (req, res) => {
       });
     return;
   }
-  const newWorkout = {
+  const newRecord = {
     name: body.name,
     mode: body.mode,
     equipment: body.equipment,
